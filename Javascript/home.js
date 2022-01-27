@@ -1,10 +1,14 @@
 //Whenever our file gets loaded this window function will be called.
 window.addEventListener('DOMContentLoaded', (event) => {
+
     createInnerHTML();
 });
 
 //Template literal 
 const createInnerHTML = () => {
+    //let empPayrollList = createEmployeePayrollJson()[1];
+    //console.log(empPayrollData);
+
     const headerHtml = `<tr>
     <th>Profile</th>
     <th>Name</th>
@@ -14,23 +18,64 @@ const createInnerHTML = () => {
     <th>Start Date</th>
     <th>Actions</th>
 </tr>`;
-    const innerHtml = `${headerHtml}
+    let innerHtml = `${headerHtml}`;
+    //let innerHtml = `${headerHtml}
+    let empPayrollList = createEmployeePayrollJson();
+    for (const empPayrollData of empPayrollList) {
+        innerHtml = `${innerHtml}
 
 <tr>
-    <td><img class="profile" alt="profileImage" src="../Assets/assets/profile-images/Ellipse -2.png"></td>
-    <td>Shubham Saini</td>
-    <td>Male</td>
+    <td><img class="profile" alt="profileImage" src="${empPayrollData._profilepic}"></td>
+    <td>${empPayrollData._name}</td>
+    <td>${empPayrollData._gender}</td>
+    <td>${getDeptHtml(empPayrollData._department)}</td>
+    <td>${empPayrollData._salary}</td>
+    <td>${empPayrollData._startDate}</td>
     <td>
-        <div class="dept-label">HR</div>
-        <div class="dept-label">Engineer</div>
-    </td>
-    <td>400000</td>
-    <td>25 Mar 2021</td>
-    <td>
-        <img alt="delete" src="../Assets/assets/icons/delete-black-18dp.svg">
-        <img alt="update" src="../Assets/assets/icons/create-black-18dp.svg">
+        <img name ="${empPayrollData._id}" onclick="remove()" alt="delete" src="../Assets/assets/icons/delete-black-18dp.svg">
+        <img name ="${empPayrollData._id}" alt="edit" onclick="update()"" src="../Assets/assets/icons/create-black-18dp.svg">
     </td>
 </tr>
+    
     `;
+    }
     document.querySelector('#display').innerHTML = innerHtml;
+}
+
+const createEmployeePayrollJson = () => {
+    let empPayrollList = [{
+            "id": 1,
+            "_name": "Mark",
+            "_gender": "male",
+            "_department": [
+                "Finance"
+            ],
+            "_salary": "500000",
+            "_startDate": 1572287400000,
+            "_note": "All In One",
+            "_profilePic": "../Assets/assets/profile-images/Ellipse -3.png"
+        },
+        {
+            "id": 2,
+            "_name": "Bill",
+            "_gender": "male",
+            "_department": [
+                "Engineering",
+                "Finance"
+            ],
+            "_salary": "500000",
+            "_startDate": "29 Oct 2019",
+            "_note": "Terrific Engineer",
+            "_profilePic": "../Assets/assets/profile-images/Ellipse -1.png"
+        }
+    ];
+    return empPayrollList;
+}
+
+const getDeptHtml = (deptList) => {
+    let deptHtml = '';
+    for (const dept of deptList) {
+        deptHtml = `${deptHtml} <div class="dept-label">${dept}</div>`;
+    }
+    return deptHtml;
 }
