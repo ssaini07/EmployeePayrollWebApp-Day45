@@ -1,15 +1,22 @@
+let empPayrollList;
 //Whenever our file gets loaded this window function will be called.
 window.addEventListener('DOMContentLoaded', (event) => {
-
+    empPayrollList = getEmployeePayrollDataFromStorage();
+    document.querySelector(".emp-count").textContent = empPayrollList.length;
     createInnerHTML();
 });
 
+const getEmployeePayrollDataFromStorage = () => {
+    return localStorage.getItem('EmployeePayrollList') ?
+        JSON.parse(localStorage.getItem('EmployeePayrollList')) : [];
+}
+
 //Template literal 
 const createInnerHTML = () => {
-    //let empPayrollList = createEmployeePayrollJson()[1];
-    //console.log(empPayrollData);
+        //let empPayrollList = createEmployeePayrollJson()[1];
+        //console.log(empPayrollData);
 
-    const headerHtml = `<tr>
+        const headerHtml = `<tr>
     <th>Profile</th>
     <th>Name</th>
     <th>Gender</th>
@@ -18,11 +25,12 @@ const createInnerHTML = () => {
     <th>Start Date</th>
     <th>Actions</th>
 </tr>`;
-    let innerHtml = `${headerHtml}`;
-    //let innerHtml = `${headerHtml}
-    let empPayrollList = createEmployeePayrollJson();
-    for (const empPayrollData of empPayrollList) {
-        innerHtml = `${innerHtml}
+        if (empPayrollList.length == 0) return;
+        let innerHtml = `${headerHtml}`;
+        //let innerHtml = `${headerHtml}
+        //let empPayrollList = createEmployeePayrollJson();
+        for (const empPayrollData of empPayrollList) {
+            innerHtml = `${innerHtml}
 
 <tr>
     <td><img class="profile" alt="profileImage" src="${empPayrollData._profilepic}"></td>
@@ -38,40 +46,40 @@ const createInnerHTML = () => {
 </tr>
     
     `;
-    }
-    document.querySelector('#display').innerHTML = innerHtml;
-}
-
-const createEmployeePayrollJson = () => {
-    let empPayrollList = [{
-            "id": 1,
-            "_name": "Mark",
-            "_gender": "male",
-            "_department": [
-                "Finance"
-            ],
-            "_salary": "500000",
-            "_startDate": 1572287400000,
-            "_note": "All In One",
-            "_profilePic": "../Assets/assets/profile-images/Ellipse -3.png"
-        },
-        {
-            "id": 2,
-            "_name": "Bill",
-            "_gender": "male",
-            "_department": [
-                "Engineering",
-                "Finance"
-            ],
-            "_salary": "500000",
-            "_startDate": "29 Oct 2019",
-            "_note": "Terrific Engineer",
-            "_profilePic": "../Assets/assets/profile-images/Ellipse -1.png"
         }
-    ];
-    return empPayrollList;
-}
-
+        document.querySelector('#display').innerHTML = innerHtml;
+    }
+    /*
+    const createEmployeePayrollJson = () => {
+        let empPayrollList = [{
+                "id": 1,
+                "_name": "Mark",
+                "_gender": "male",
+                "_department": [
+                    "Finance"
+                ],
+                "_salary": "500000",
+                "_startDate": 1572287400000,
+                "_note": "All In One",
+                "_profilePic": "../Assets/assets/profile-images/Ellipse -3.png"
+            },
+            {
+                "id": 2,
+                "_name": "Bill",
+                "_gender": "male",
+                "_department": [
+                    "Engineering",
+                    "Finance"
+                ],
+                "_salary": "500000",
+                "_startDate": "29 Oct 2019",
+                "_note": "Terrific Engineer",
+                "_profilePic": "../Assets/assets/profile-images/Ellipse -1.png"
+            }
+        ];
+        return empPayrollList;
+    }
+    */
 const getDeptHtml = (deptList) => {
     let deptHtml = '';
     for (const dept of deptList) {
