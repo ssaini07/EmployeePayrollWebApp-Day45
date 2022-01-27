@@ -45,3 +45,68 @@ html body {
 * {
     box-sizing: border-box;
 }
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh-80px);
+    background-color: #f7f7f7;
+    padding: 30px 0 10px;
+    box-sizing: border-box;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 25px;
+}
+
+.sub-main-content {
+    justify-content: space-between;
+    width: 80%;
+    display: flex;
+    border: 0px, solid, green;
+    padding-bottom: 25px;
+}
+
+.emp-detail-text {
+    font: normal normal bold 24px/25px Roboto;
+    letter-spacing: 0px;
+    color: #42515f;
+    opacity: 1;
+}
+
+.emp-count {
+    background-color: #82a70c;
+    color: #ffff;
+    border-radius: 50%;
+    font-size: 20px;
+    width: 40px;
+    text-align: center;
+    display: inline-block;
+}
+
+.add-button {
+    font-size: 20px;
+    font-family: Roboto;
+    color: #ffffff;
+    font-weight: 400;
+    min-width: 145px;
+    padding: 7px 7px;
+    padding-top: 12px;
+    cursor: pointer;
+    background: #82a70c no-repeat padding-box;
+    border: 2px solid #969696;
+    border-radius: 9px;
+    text-decoration: none;
+    display: flex;
+}
+
+.plus-icon {
+    padding-right: 5px;
+    padding-left: 2px;
+}
