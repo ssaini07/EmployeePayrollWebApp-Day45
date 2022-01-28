@@ -25,7 +25,7 @@ const createInnerHTML = () => {
         innerHtml = `${innerHtml}
 
 <tr>
-    <td><img class="profile" alt="profileImage" src="${empPayrollData._profilepic}"></td>
+    <td><img class="profile" alt="profileImage" src="${empPayrollData._profilePic}"></td>
     <td>${empPayrollData._name}</td>
     <td>${empPayrollData._gender}</td>
     <td>${getDeptHtml(empPayrollData._department)}</td>
